@@ -1,1 +1,2 @@
 second file in the git project
+did some changes in the file
