@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Source Code Checkout') {
+            steps {
+                git 'https://github.com/akramdevopstrainer/maven-standalone-application.git'
+            }
+        }
+
+        stage('Build Code') {
+            steps {
+                echo 'Building the code...'
+                // Add your actual build code here
+            }
+        }
+
+        stage('Testing Code') {
+            steps {
+                echo 'Running tests...'
+                // Add your actual testing commands here
+            }
+        }
+
+        stage('Package Code') {
+            steps {
+                echo 'Packaging the code...'
+                // Add code to package your application (e.g., create a JAR or WAR file)
+            }
+        }
+
+        stage('Deploy Code') {
+            steps {
+                echo 'Deploying the code...'
+                // Add code to deploy your application to a server or container
+            }
+        }
+
+        stage('Release Code') {
+            steps {
+                echo 'Releasing the code...'
+                // Add code to release your application (e.g., update version numbers, changelog, etc.)
+            }
+        }
+
+        stage('Send Email to Customer') {
+            steps {
+                subject: "Release Notification",
+            body: "This is a notification email for the release.",
+            to: "customer@example.com", // Replace with the actual customer's email address
+            cc: '', // You can specify CC recipients if needed
+            bcc: '', // You can specify BCC recipients if needed
+            replyTo: "your_email@gmail.com", // Replace with your Gmail address
+            mimeType: 'text/html', // You can use 'text/plain' for plain text emails
+            attachmentsPattern: '**/your-attachment-file.*', // Optional: Attach files
+            presendScript: '''
+                // Optional script to customize the email content or subject
+                msg.addHeader("X-Custom-Header", "Custom Value");
+            '''
+        }
+    }
+}
